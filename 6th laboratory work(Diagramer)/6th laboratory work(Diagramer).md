@@ -47,12 +47,11 @@
 Допущен к выполнению работы.  
 <b>Подпись преподавателя</b> ________________
 ## 8. Распечатка протокола 
-![1](https://user-images.githubusercontent.com/114256033/198818732-a6529416-aefc-43a0-8ff4-7de0e5e03a1d.png)
-![2](https://user-images.githubusercontent.com/114256033/198818734-7965cc16-8071-4ec0-a6f8-44268dd982a1.png)
-
-<img src="C:\Users\ivank\OneDrive\Изображения\Снимки экрана\Снимок экрана (34).png">
-![2](https://user-images.githubusercontent.com/114256033/198818737-77d166d1-8edd-497f-a8cc-ad506ba2962f.png)
-![1](https://user-images.githubusercontent.com/114256033/198818739-b7ec12a3-2161-4b57-a726-2d5557993ee9.png)
+![1](https://user-images.githubusercontent.com/114256033/198818770-d9db06d3-d94f-4ecf-96d2-4a23cb8116e8.png)
+![2](https://user-images.githubusercontent.com/114256033/198818771-8d29ccf2-f445-4031-87e9-fbd
+![2](https://user-images.githubusercontent.com/114256033/198818778-545d42e6-a676-41a7-874e-928e78446cb0.png)
+![1](https://user-images.githubusercontent.com/114256033/198818780-16152028-817a-4e1c-ba36-18757dcdb2a6.png)
+1d2ff14cc.png)
 
 ## 9. Дневник отладки должен содержать дату и время сеансов отладки и основные события (ошибки в сценарии и программе, нестандартные ситуации) и краткие комментарии к ним. В дневнике отладки приводятся сведения об использовании других ЭВМ, существенном участии преподавателя и других лиц в написании и отладке программы.
 
