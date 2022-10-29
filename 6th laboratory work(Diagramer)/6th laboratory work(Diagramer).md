@@ -48,7 +48,6 @@
 <b>Подпись преподавателя</b> ________________
 ## 8. Распечатка протокола 
 ![1](https://user-images.githubusercontent.com/114256033/198818770-d9db06d3-d94f-4ecf-96d2-4a23cb8116e8.png)
-![2](https://user-images.githubusercontent.com/114256033/198818771-8d29ccf2-f445-4031-87e9-fbd
 ![2](https://user-images.githubusercontent.com/114256033/198818778-545d42e6-a676-41a7-874e-928e78446cb0.png)
 ![1](https://user-images.githubusercontent.com/114256033/198818780-16152028-817a-4e1c-ba36-18757dcdb2a6.png)
 1d2ff14cc.png)
