@@ -60,13 +60,13 @@ Emacs
 
 1. **Распечатка протокола**
 
-` `#include <stdio.h>
+#include <stdio.h>
 
-` `#include <math.h>
+#include <math.h>
 
-` `int main()
+int main()
 
-` `{
+{
 
 double weight, watt;
 
