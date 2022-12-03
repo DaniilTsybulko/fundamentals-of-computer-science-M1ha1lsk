@@ -60,62 +60,168 @@ Gcc
 8. **Распечатка протокола**
 
 #include <stdio.h>
-#include <math.h>
+
+#include <stdlib.h>
+
+
+
+typedef struct 
+
+{
+
+	char* buffer;
+
+	size_t capacity;
+
+ 	size_t length;
+
+} string;
+
+
 
 int main ()
+
 {
-	int k, a, b, r;
-	char t, c;
+
+	int k, r, b;
+
+	char t;
+
 	printf("R or L?\n");
-	scanf("%c", &t);
-	a = 0;
+
+	scanf("%c\n", &t);
+
+	r = 0;
+
 	if (t == 'L')
+
 	{
-		printf("How many symbols?\n");
-		scanf("%d", &k);
-		c = getchar();
-		c = getchar();
-		while (k != 0)
+
+		int c = getchar();
+
+		while (c-'0' != -38)
+
 		{
-			b = c-'0';
-			k = k - 1;
-			a = a + b * pow(10,k);
-			c = getchar();
+
+			if (r == 0)
+
+			{
+
+				k = c-'0';
+
+				r = 1;
+
+			}
+
+			int c = getchar();
+
+			if (c-'0' != -38)
+
+			{
+
+				printf("%d", c-'0');
+
+			}
+
+			else
+
+			{
+
+				break;
+
+			}
+
 		}
-		while (c != '\n')
-		{
-			b = c-'0';
-			printf("%d", b);
-			c = getchar();
-		}
-		printf("%d\n", a);
+
+		printf("%d\n", k);
+
+		return 0;
+
 	}
+
 	if (t == 'R')
+
 	{
-		printf("How many symbols?\n");
-		scanf("%d", &k);
-		printf("How many symbols in your number?\n");
-		scanf("%d", &r);
-		k = r - k;
-		c = getchar();
-		c = getchar();
-		while (k != 0)
-		{
-			b = c-'0';
-			k = k - 1;
-			a = a + b * pow(10,k);
-			c = getchar();
-		}
-		while (c != '\n')
-		{
-			b = c-'0';
-			printf("%d", b);
-			c = getchar();
-		}
-		printf("%d\n", a);
-	}
-	return 0;
+
+		size_t capacity = 1 << 4;
+
+  		size_t length = 0;
+
+		char* str = malloc(capacity);
+
+  		if (str == NULL) 
+
+  		{
+
+  	  		return 1;
+
+  		}
+
+  		while(1) 
+
+  		{
+
+    			char c = getchar();
+
+    			if (c-'0' == -38)
+
+    			{
+
+    				b = k;
+
+    				break;
+
+    			}
+
+    			length++;
+
+    			if(length > capacity) 
+
+    			{
+
+      				capacity <<= 1;
+
+      				char* new_str = realloc(str, capacity);
+
+      				if (new_str == NULL) 
+
+      				{ 
+
+      					free(str);
+
+        				return 1;
+
+      				}
+
+      				str = new_str;
+
+    			}
+
+    			str[length - 1] = c;
+
+    			k = c-'0';
+
+ 		}
+
+ 		printf("%d", b);
+
+  		for (int i =  0; i < length - 1; i++)
+
+  		{
+
+    			printf("%d", str[i]-'0');
+
+    		}
+
+    		free(str);
+
+    		return 0;
+
+  	}
+
 }
+
+			
 
 9. **Дневник отладки должен содержать дату и время сеансов отладки и основные события (ошибки в сценарии и программе, нестандартные ситуации) и краткие комментарии к ним. В дневнике отладки приводятся сведения об использовании других ЭВМ, существенном участии преподавателя и других лиц в написании и отладке программы.**
 
