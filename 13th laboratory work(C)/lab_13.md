@@ -125,6 +125,7 @@ int main() {
 1)
   Ввод: HastaLaVista43857648536*^&%Baby738467)# AlpenGoldOneLove98347*7# aAaaa
   fff
+
   Вывод: There are some common vowels
 
 2)
@@ -136,6 +137,7 @@ int main() {
   Ввод: asdfgsfdbs)(*^&   adghhd)(*&778
   fhjgfa87596756* ^&$%a
   a
+  
   Вывод: There are some common vowels
 
 
