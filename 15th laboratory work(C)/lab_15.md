@@ -60,7 +60,7 @@ SSD: 256 ГБ
 - Обход матрицы в цикле с присвоением элементам необходимых индексов, путем вывода индексов элементов, располагающихся по спирали
 - Вывод полученной матрицы с помощью двух вложенных циклов for
 
-#L1-L80https://github.com/mai-806-1st-year/fundamentals-of-computer-science-M1ha1lsk/blob/master/15th%20laboratory%20work(C)/lab15.c
+#L1-L80C:\Users\ivank\MAI\github\fundamentals-of-computer-science-M1ha1lsk
 
 Пункты 1-7 отчета составляются строго до начала лабораторной работы. Допущен к выполнению работы.
 
