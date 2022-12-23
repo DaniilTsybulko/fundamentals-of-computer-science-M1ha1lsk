@@ -42,7 +42,12 @@ SSD: 256 ГБ
 
 5. **Программное обеспечение:**
 
-Emacs
+- Операционная система семейства:  UNIX
+- Наименование:  Ubuntu
+- Версия:  Ubuntu 22.04 LTS
+- Интерпретатор команд:  bash
+- Версия:  5.1-6ubuntu1
+- Компилятор:  gcc
 
 6. **Идея, метод, алгоритм решения задачи (в формах: словесной, псевдокода, графической [блок-схема, диаграмма, рисунок, таблица] или формальные спецификации с пред- и постусловиями)**
 
@@ -63,17 +68,24 @@ Emacs
 ```
 #include <stdio.h>
 
+void sdvig(int s, int n,  int (*m)[n]);
+
 int main() {
     int n, s;
     scanf("%d", &s);
     scanf("%d", &n);
     int m[n][n];
-    int r[n][n];
     for (int i = 0; i != n; ++i) {
-   	for (int j = 0; j != n; ++j) {
-            scanf("%d" , &m[i][j]);
-	}
+   	    for (int j = 0; j != n; ++j) {
+            scanf("%d", &m[i][j]);
+	    }
     }
+    sdvig(s, n, (int (*)[n]) m);
+    return 0;
+}
+
+void sdvig(int s, int n,  int (*m)[n]) {
+    int r[n][n];
     int dir[4] = { 1, 0, -1, 0 };
     int a[n * n - s - 1];
     int b[s - 1];
@@ -133,14 +145,12 @@ int main() {
     }
 
     for (int i = 0; i != n; ++i) {
-   	for (int j = 0; j != n; ++j) {
+   	    for (int j = 0; j != n; ++j) {
             printf("%d " , r[i][j]);
-	}
+	    }
 	printf("\n");
     }
 }
-
-
 
 ```
 
