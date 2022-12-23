@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <ctype.h>
 
+#define vowels (1u << ('a'-'a') | 1u << ('e'-'a') | 1u << ('i'-'a') | 1u << ('o'-'a') | 1u << ('u'-'a'))
+
 unsigned int char_to_set(char c) {
     c = tolower(c);
     if (c < 'a' || c > 'z') {
@@ -22,10 +24,10 @@ int main() {
         c = tolower(c);
         if (c >= 'a' && c <= 'z') {
             if (k == 1) {
-	        first_set = first_set | char_to_set(c);
+	        first_set = (first_set | char_to_set(c)) & vowels;
 	    }
 	    else {
-		second_set = second_set | char_to_set(c);	
+		second_set = (second_set | char_to_set(c)) & vowels;	
 	    }
         }
         c = getchar();
@@ -39,10 +41,10 @@ int main() {
 	}
     }
     if (first_set != 0) {
-	printf("There are some common characters\n");
+	printf("There are some common vowels\n");
     }
     else {
-	printf("There aren't some common character\n");
+	printf("There aren't some common vowels\n");
     }	
     return 0;
 }
