@@ -1,15 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void snake(int n, int (*m)[n]);
+
 int main() {
-    int n, k, i, j, g, p, f;
+    int n;
     scanf("%d", &n);
-    int m[100][100];
+    int m[n][n];
     for (int i = 0; i != n; ++i) {
    	for (int j = 0; j != n; ++j) {
             scanf("%d", &m[i][j]);
 	}
     }
+    snake( n, (int (*)[n]) m);
+    putchar('\n');
+    return 0;
+}
+
+void snake(int n, int (*m)[n]) {
+    int k, i, j, g, p, f;
     i = n - 1;
     j = n - 1;
     p = 2;
@@ -65,6 +74,4 @@ int main() {
         }
     }
     printf("%d ", m[0][0]);
-    putchar('\n');
-    return 0;
 }
