@@ -24,7 +24,7 @@
 
 3. **Задание (вариант № 11)**
 
-Есть ли гласная (согласная), входящая в состав всех слов?
+Есть ли гласная, входящая в состав всех слов?
 
 4. **Оборудование:**
 
@@ -69,6 +69,8 @@ SSD: 256 ГБ
 #include <stdio.h>
 #include <ctype.h>
 
+#define vowels (1u << ('a'-'a') | 1u << ('e'-'a') | 1u << ('i'-'a') | 1u << ('o'-'a') | 1u << ('u'-'a'))
+
 unsigned int char_to_set(char c) {
     c = tolower(c);
     if (c < 'a' || c > 'z') {
@@ -90,10 +92,10 @@ int main() {
         c = tolower(c);
         if (c >= 'a' && c <= 'z') {
             if (k == 1) {
-	            first_set = first_set | char_to_set(c);
+	            first_set = (first_set | char_to_set(c)) & vowels;
 	        }
 	        else {
-		        second_set = second_set | char_to_set(c);	
+		        second_set = (second_set | char_to_set(c)) & vowels;	
 	        }
         }
         c = getchar();
@@ -107,16 +109,35 @@ int main() {
 	    }
     }
     if (first_set != 0) {
-	    printf("There are some common characters\n");
+	    printf("There are some common vowels\n");
     }
     else {
-	    printf("There aren't some common character\n");
+	    printf("There aren't some common vowels\n");
     }	
     return 0;
 }
 
 
 ```
+
+Тесты:
+
+1)
+  Ввод: HastaLaVista43857648536*^&%Baby738467)# AlpenGoldOneLove98347*7# aAaaa
+  fff
+  Вывод: There are some common vowels
+
+2)
+  Ввод: yresdhfghv894367u2877 &^*&DFY
+  
+  Вывод: There aren't some common vowels
+
+3)
+  Ввод: asdfgsfdbs)(*^&   adghhd)(*&778
+  fhjgfa87596756* ^&$%a
+  a
+  Вывод: There are some common vowels
+
 
 9. **Дневник отладки должен содержать дату и время сеансов отладки и основные события (ошибки в сценарии и программе, нестандартные ситуации) и краткие комментарии к ним. В дневнике отладки приводятся сведения об использовании других ЭВМ, существенном участии преподавателя и других лиц в написании и отладке программы.**
 
