@@ -26,7 +26,7 @@ ld sign(ld x){
     return x > epsilon ? 1.l : x < -epsilon ? -1.l : 0.l;
 }
 
-ld dihotomy1(pFunc f, ld a, ld b){
+ld dichotomy1(pFunc f, ld a, ld b){
     ld x = (a + b) / 2;
     while (fabsl(a-b) > epsilon * k){
         x = (a + b) / 2;
@@ -52,7 +52,7 @@ ld newton1(pFunc f, ld a, ld b){
     return x;
 }
 
-ld dihotomy2(pFunc f, ld a, ld b){
+ld dichotomy2(pFunc f, ld a, ld b){
     ld x = (a + b) / 2;
     while (fabsl(a-b) > epsilon * k){
         a = ceil(a * 1e+10) / 1e+10;
@@ -95,11 +95,11 @@ ld func2(ld x){
 
 int main(){
     epsilon = machineeps();
-    printf("dichotomy method result 11 variant: %Lf\n", dihotomy1(func1, a1, b1));
+    printf("dichotomy method result 11 variant: %Lf\n", dichotomy1(func1, a1, b1));
     printf("iteration method result 11 variant: %Lf\n", iteration1(func1, a1, b1));
     printf("newton method result 11 variant: %Lf\n", newton1(func1, a1, b1));
     printf("\n");
-    printf("dichotomy method result 12 variant: %Lf\n", dihotomy2(func2, a2, b2));
+    printf("dichotomy method result 12 variant: %Lf\n", dichotomy2(func2, a2, b2));
     printf("iteration method result 12 variant: %Lf\n", iteration2(func2, a2, b2));
     printf("newton method result 12 variant: %Lf\n", newton2(func2, a2, b2));
 }
