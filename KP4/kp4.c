@@ -1,124 +1,123 @@
 #include <stdio.h>
 #include <math.h>
+#include <float.h>
+#include <assert.h>
+#include <stdbool.h>
 
-typedef long double(*pFunc)(long double);
+typedef double(*pFunc)(double);
 
-
-long double machineeps();
-long double dx1(long double x);
-long double dx2(long double x);
-long double sign(long double x);
-long double dichotomy1(pFunc f, long double a, long double b);
-long double iteration1(pFunc f, long double a, long double b);
-long double newton1(pFunc f, long double a, long double b);
-long double dichotomy2(pFunc f, long double a, long double b);
-long double iteration2(pFunc f, long double a, long double b);
-long double newton2(pFunc f, long double a, long double b);
-long double func1(long double x);
-long double func2(long double x);
+double machineeps();
+double dx1(double x);
+double dx2(double x);
+double sign(double x);
+double dichotomy1(pFunc f, double a, double b);
+double iteration1(pFunc f, double a, double b);
+double newton1(pFunc f, double a, double b);
+double dichotomy2(pFunc f, double a, double b);
+double iteration2(pFunc f, double a, double b);
+double newton2(pFunc f, double a, double b);
+double func1(double x);
+double func2(double x);
 
 
 int main(){
-    long double a1 = -1.l, b1 = 0.l;
-    long double a2 = 2.l, b2 = 3.l;
-    printf("dichotomy method result 11 variant: %Lf\n", dichotomy1(func1, a1, b1));
-    printf("iteration method result 11 variant: %Lf\n", iteration1(func1, a1, b1));
-    printf("newton method result 11 variant: %Lf\n", newton1(func1, a1, b1));
+    double a1 = -1.0, b1 = 0.0;
+    double a2 = 2.0, b2 = 3.0;
+    printf("dichotomy method result 11 variant: %f\n", dichotomy1(func1, a1, b1));
+    printf("iteration method result 11 variant: %f\n", iteration1(func1, a1, b1));
+    printf("newton method result 11 variant: %f\n", newton1(func1, a1, b1));
     printf("\n");
-    printf("dichotomy method result 12 variant: %Lf\n", dichotomy2(func2, a2, b2));
-    printf("iteration method result 12 variant: %Lf\n", iteration2(func2, a2, b2));
-    printf("newton method result 12 variant: %Lf\n", newton2(func2, a2, b2));
+    printf("dichotomy method result 12 variant: %lf\n", dichotomy2(func2, a2, b2));
+    printf("iteration method result 12 variant: %f\n", iteration2(func2, a2, b2));
+    printf("newton method result 12 variant: %f\n", newton2(func2, a2, b2));
+    return 0;
 }
 
-
-long double machineeps(){
-    long double eps = 1;
-    while(1 < 1 + eps)
-        eps /= 2;
-    return eps;
+double machineeps() {
+    double x = 1.0;
+    double eps = 1.0;
+    while (x + eps / 2.0 != x)
+        eps /= 2.0;
+    return eps * 2.0;
 }
 
-long double dx1(long double x){
+double dx1(double x){
     return expl(x) + 1 / (2 * sqrtl(1 + expl(2 * x))) * expl(2 * x) * 2;
 }
 
-long double dx2(long double x){
-    return ((1 / x) - 1.l);
+double dx2(double x){
+    return ((1 / x) - 1.0);
 }
 
-long double sign(long double x){
-    long double epsilon = machineeps();
-    return x > epsilon ? 1.l : x < -epsilon ? -1.l : 0.l;
+double sign(double x){
+    double epsilon = machineeps();
+    return x > epsilon ? 1.0 : x < -epsilon ? -1.0 : 0.0;
 }
 
-long double dichotomy1(pFunc f, long double a, long double b){
-    long double epsilon = machineeps();
-    long double x = (a + b) / 2;
+double dichotomy1(pFunc f, double a, double b){
+    double epsilon = machineeps();
+    double x = a + (b - a) / 2;
     while (fabsl(a-b) > epsilon){
-        x = (a + b) / 2;
+        x = a + (b - a) / 2;
         if(f(a) * f(x) > 0.l) a = x;
         else b = x;
     }
     return x;
 }
 
-long double iteration1(pFunc f, long double a, long double b){
-    long double epsilon = machineeps();
-    long double x = (a + b) / 2;
+double iteration1(pFunc f, double a, double b){
+    double epsilon = machineeps();
+    double x = a + (b - a) / 2;
     while(fabsl(f(x)) > epsilon){
         x = x - f(x)*sign(dx1(x));
     }
     return x;
 }
 
-long double newton1(pFunc f, long double a, long double b){
-    long double epsilon = machineeps();
-    long double x = (a + b) / 2;
+double newton1(pFunc f, double a, double b){
+    double epsilon = machineeps();
+    double x = a + (b - a) / 2;
     while(fabsl(f(x)/ dx1(x)) > epsilon){
         x = x - f(x)/dx1(x);
     }
     return x;
 }
 
-long double dichotomy2(pFunc f, long double a, long double b){
-    long double epsilon = machineeps();
-    long double x = (a + b) / 2;
+double dichotomy2(pFunc f, double a, double b) {
+    double epsilon = machineeps();
+    double x = a + (b - a) / 2;
     while (fabsl(a-b) > epsilon){
-        a = ceil(a * 1e+10) / 1e+10;
-        b = ceil(b * 1e+10) / 1e+10;
-        x = (a + b) / 2;
+        x = a + (b - a) / 2;
         if(f(a) * f(x) > 0.l) a = x;
         else b = x;
     }
     return x;
 }
 
-long double iteration2(pFunc f, long double a, long double b){
-    long double epsilon = machineeps();
-    long double x = (a + b) / 2;
+double iteration2(pFunc f, double a, double b){
+    double epsilon = machineeps();
+    double x = a + (b - a) / 2;
     while(fabsl(f(x)) > epsilon){
         x = (x - f(x)*sign(dx2(x)));
     }
     return x;
 }
 
-long double newton2(pFunc f, long double a, long double b){
-    long double epsilon = machineeps();
-    long double x = (a + b) / 2;
+double newton2(pFunc f, double a, double b){
+    double epsilon = machineeps();
+    double x = a + (b - a) / 2;
     while(fabsl(f(x)/ dx2(x)) > epsilon){
         x = x - f(x)/dx2(x);
     }
     return x;
 }
 
-long double func1(long double x){
-    return expl(x) + sqrtl(1.l + expl(2 * x)) - 2.l;
+double func1(double x){
+    return expl(x) + sqrtl(1.0 + expl(2 * x)) - 2.0;
 }
 
-long double func2(long double x){
-    long double p = logl(x) - x + 1.8l;
-    p = ceil(p * 1e+10) / 1e+10;
-    return p;
+double func2(double x){
+    return logl(x) - x + 1.8;
 }
 
 
