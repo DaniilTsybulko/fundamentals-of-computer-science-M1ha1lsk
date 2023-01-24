@@ -1,71 +1,50 @@
 #include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 
+#define MAX_ITER 20
 
-long double compute_epsilon();
-long double inner_func(long double x);
-int factorial(long long n);
-long double teilor_series(long double x, int n);
-void printtab(long double k, long double a, long double b, int steps, int max_iters);
+typedef unsigned uint;
+typedef double dbl;
+typedef long double ldbl;
 
+dbl epsilon();
+
+dbl TaylorSeries(dbl x);
+
+void tabulation(dbl a, dbl b, uint n);
 
 int main() {
-    long double k = 10e-40;
-    long double a = 0.1l;
-    long double b = 0.6l;
-    int steps = 15;
-    int max_iters = 100;
-    printtab( k, a, b, steps, max_iters);
+    dbl a = 0.1;
+    dbl b = 0.6;
+    dbl epss = epsilon();
+    printf("dbl epsilon is %.20e\n", epss);
+    tabulation(a, b, 20);
+    return 0;
+}
+
+void tabulation(const dbl a, const dbl b, const uint n) {
+    const dbl delta = (b - a) / n;
+    for (uint i = 0; i <= n; ++i) {
+        const dbl x = a + i * delta;
+        printf("%.6f %.15f %.15f\n", x, (1 - (x * x / 2)) * cos(x) - (x / 2) * sin(x), TaylorSeries(x));
+    }
 }
 
 
-long double compute_epsilon(){
-    long double eps = 1;
-    while(1 < 1 + eps)
-        eps /= 2;
+dbl epsilon() {
+    dbl x = 1.0;
+    dbl eps = 1.0;
+    while (x + eps / 2.0 != x)
+        eps /= 2.0;
     return eps;
 }
 
-long double inner_func(long double x){
-    return (1 - powl(x,2) / 2) * cos(x) - x/2 * sin(x);
-}
-
-int factorial(long long n){
-    long double ans = 1;
-    for (long long i = 2; i <= n; ++i) {
-        ans *= i;
+dbl TaylorSeries(const dbl x) {
+    dbl result = 1.0, member = 1.0;
+    for (uint n = 1; n < MAX_ITER; ++n) {
+        member *= -1.0 * (2.0 * n * n + 1.0) / (4.0 * n * n * n - 10.0 * n * n + 10.0 * n - 3.0) * x * x / (2.0 * n);
+        result += member;
     }
-    return ans;
+    return result;
 }
-
-long double teilor_series(long double x, int n){
-    long double v = pow(-1, n);
-    v *= (2 * n * n + 1);
-    v /= 2 * (long double)factorial(n);
-    v *= powl(x, 2 * n);
-    return v;
-}
-
-void printtab(long double k, long double a, long double b, int steps, int max_iters){
-    long double step = (b-a)/steps;
-    long double eps = compute_epsilon();
-    printf("Machine epsilon for long double for this system is %.20Lf\n", eps);
-    printf("______________________________________________________________________________\n");
-    printf("|x   | Sum                 | (1 - (x^2 / 2)) * cos(x) - (x / 2) * sin(x) |  n|\n");
-    printf("|____|_____________________|_____________________________________________|___|\n");
-
-    for(long double x = a; x < b + step; x += step){
-        int n = 0;
-        long double cur_member = 1;
-        long double sum = 0;
-        while((fabsl(cur_member) > eps * k && n < max_iters) || n == 2){
-            cur_member = teilor_series(x, n);
-            sum += cur_member;
-            n++;
-        }
-        printf("|%.2Lf|%.19Lf|%.43Lf|%3d|\n", x, sum, inner_func(x), n);
-    }
-    printf("|____|_____________________|_____________________________________________|___|\n");
-}
-
-
