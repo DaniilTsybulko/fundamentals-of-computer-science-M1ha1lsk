@@ -2,7 +2,7 @@
 
 # Проверим, что заданы все обязательные параметры
 if [ "$#" -ne 4 ]; then
-    echo "Ошибка, указано слищком мало параметров. Их значения будут приняты стандартными."
+    echo "Ошибка, нужно указать 4 параметра: директорию, исходный файл, число повторов и максимальный размер в байтах."
     read -p "dir name = " dir_name
     read -p "input file = " input_file
     read -p "repeats num = " num_repeats
@@ -32,4 +32,4 @@ while [ $num_repeats != 0 ]; do
     cat $input_file >> concatenated_file.txt
     num_repeats=$(expr $num_repeats - 1)
 done
-echo "Результирующий файл сохранен в concatenated_file.txt
+echo "Результирующий файл сохранен в concatenated_file.txt"
