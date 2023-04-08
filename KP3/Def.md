@@ -1,0 +1,1 @@
+1.[Div3 задача A, на контесте](https://codeforces.com/contest/1800/submission/195682792)
