@@ -6,7 +6,7 @@ void sqrtx(int x);
 int main() {
     int x;
     scanf("%d", &x);
-    sqrtx(x);
+    printf("%d\n", sqrtx(x));
     return 0;
 }
 
@@ -23,10 +23,7 @@ void sqrtx(int x) {
             c = a;
             a = a / 2 + 1;
         }
-        printf("%d\n", a);
-        if (a == b) {
-            printf("%d\n", a);
-            break;
-        }
+        if (a == b)
+            return a;
     }
 }
