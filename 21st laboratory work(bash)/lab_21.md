@@ -63,7 +63,7 @@ SSD: 256 ГБ
 
 # Проверим, что заданы все обязательные параметры
 if [ "$#" -ne 4 ]; then
-    echo "Ошибка, нужно указать 4 параметра: директорию, исходный файл, число повторов и максимальный размер в байтах."
+    echo "Ошибка, нужно указать 4 параметра следующим оюразом: ./skript_name.sh dir_name input_file num_repeats max_size"
     read -p "dir name = " dir_name
     read -p "input file = " input_file
     read -p "repeats num = " num_repeats
